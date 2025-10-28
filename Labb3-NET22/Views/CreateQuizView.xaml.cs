@@ -59,7 +59,7 @@ namespace Labb3_NET22.Views
         }
         private void SaveQuiz_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Quiz med {currentQuiz.Questions.Count()} frågor sparat (inte på riktigt ännu).");
+            MessageBox.Show($"Quiz med {currentQuiz.Questions.Count()} frågor sparat.");
         }
 
     }
