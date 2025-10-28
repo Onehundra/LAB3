@@ -22,7 +22,9 @@ public class Quiz
 
     public void AddQuestion(string statement, int correctAnswer, params string[] answers)
     {
-        throw new NotImplementedException("Question need to be instantiated and added to list of questions here!");
+        var question = new Question(statement, answers, correctAnswer);
+        List<Question> list = (List<Question>) _questions;
+        list.Add(question);
     }
 
     public void RemoveQuestion(int index)
