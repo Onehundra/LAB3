@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Labb3_NET22.DataModels;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Text.Json;
 
 namespace Labb3_NET22.Views
 {
@@ -20,12 +23,12 @@ namespace Labb3_NET22.Views
     /// </summary>
     public partial class CreateQuizView : UserControl
     {
-        private DataModels.Quiz currentQuiz = new DataModels.Quiz();
+        private Quiz currentQuiz= new Quiz();
         public CreateQuizView()
         {
             InitializeComponent();
         }
-        private void ReturnToMenu_Click(object obj, RoutedEventArgs e)
+        private void ReturnToMenu_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
@@ -57,10 +60,25 @@ namespace Labb3_NET22.Views
             Answer4Box.Clear();
             CorrectAnswerBox.Clear();
         }
-        private void SaveQuiz_Click(object sender, RoutedEventArgs e)
+        private async void SaveQuiz_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Quiz med {currentQuiz.Questions.Count()} frågor sparat.");
+            string folderPath = System.IO.Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "Labb3_NET22");
+
+            System.IO.Directory.CreateDirectory(folderPath);
+
+            string filePath = System.IO.Path.Combine(folderPath, "Quiz.json");
+
+            string json = System.Text.Json.JsonSerializer.Serialize(currentQuiz);
+
+            await System.IO.File.WriteAllTextAsync(filePath, json);
+
+
+
+            MessageBox.Show("Quiz saved!");
         }
+
 
     }
 }
