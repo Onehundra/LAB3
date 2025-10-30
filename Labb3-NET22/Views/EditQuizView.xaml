@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Labb3_NET22.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Content="Return to menu" Width="100" Height="30" Margin="10" Click="ReturnToMenu_Click"/>
+    <Grid Background="LightBlue">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <TextBlock Text="Edit Quiz" 
+                       FontSize="60" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center"
+                       Margin="10"/>
+
+            <Button Content="Load Quiz" 
+                    Width="150" 
+                    Margin="5" 
+                    Click="LoadQuiz_Click"/>
+
+            <ListBox Name="QuestionListBox" 
+                     Width="500" Height="200" 
+                     Margin="10"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Edit Selected" Width="100" Margin="5" Click="EditSelected_Click"/>
+                <Button Content="Delete Selected" Width="100" Margin="5" Click="DeleteQuestion_Click"/>
+                <Button Content="Save Changes" Width="120" Margin="5" Click="SaveChanges_Click"/>
+                <Button Content="Return to Menu" Width="100" Margin="5" Click="ReturnToMenu_Click"/>
+                
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </UserControl>

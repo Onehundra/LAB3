@@ -62,13 +62,16 @@ namespace Labb3_NET22.Views
         }
         private async void SaveQuiz_Click(object sender, RoutedEventArgs e)
         {
+            string quizTitle = QuizTitleBox.Text;
+            
+            currentQuiz.SetTitle(quizTitle);
             string folderPath = System.IO.Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "Labb3_NET22");
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            string filePath = System.IO.Path.Combine(folderPath, "Quiz.json");
+            string filePath = System.IO.Path.Combine(folderPath, $"{quizTitle}.json");
 
             string json = System.Text.Json.JsonSerializer.Serialize(currentQuiz);
 
@@ -78,6 +81,7 @@ namespace Labb3_NET22.Views
 
             MessageBox.Show("Quiz saved!");
         }
+
 
 
     }

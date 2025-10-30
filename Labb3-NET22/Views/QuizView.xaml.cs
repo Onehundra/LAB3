@@ -33,5 +33,10 @@ namespace Labb3_NET22.Views
             }
 
         }
+
+        private void AnswerBtn3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
